@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Viajes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Agencia de Viajes</h1>
+        <p>Explora nuestras ciudades disponibles y encuentra tu próximo destino.</p>
+    </header>
+    <main class="ciudades">
+        <div class="card">
+            <img src="images/destino-1.jpg" alt="Ciudad 1">
+            <h2>Ciudad 1</h2>
+            <p>Una ciudad hermosa con increíbles vistas.</p>
+            <p>Precio Base: $200</p>
+            <button onclick="seleccionarCiudad('Ciudad 1', 200)">Seleccionar</button>
+        </div>
+        <div class="card">
+            <img src="images/destino-2.jpg" alt="Ciudad 2">
+            <h2>Ciudad 2</h2>
+            <p>Disfruta de su increíble cultura y gastronomía.</p>
+            <p>Precio Base: $250</p>
+            <button onclick="seleccionarCiudad('Ciudad 2', 250)">Seleccionar</button>
+        </div>
+        <div class="card">
+            <img src="images/destino-3.jpg" alt="Ciudad 3">
+            <h2>Ciudad 3</h2>
+            <p>Perfecta para unas vacaciones relajantes.</p>
+            <p>Precio Base: $300</p>
+            <button onclick="seleccionarCiudad('Ciudad 3', 300)">Seleccionar</button>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
