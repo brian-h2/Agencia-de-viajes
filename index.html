@@ -8,32 +8,15 @@
 </head>
 <body>
     <header>
-        <h1>Agencia de Viajes</h1>
+        <div class="title">
+            <h1>Agencia de Viajes</h1>
+            <img src="./images/travel.png" alt="" srcset="">
+        </div>
+
         <p>Explora nuestras ciudades disponibles y encuentra tu próximo destino.</p>
     </header>
-    <main class="ciudades">
-        <div class="card">
-            <img src="images/destino-1.jpg" alt="Ciudad 1">
-            <h2>Ciudad 1</h2>
-            <p>Una ciudad hermosa con increíbles vistas.</p>
-            <p>Precio Base: $200</p>
-            <button onclick="seleccionarCiudad('Ciudad 1', 200)">Seleccionar</button>
-        </div>
-        <div class="card">
-            <img src="images/destino-2.jpg" alt="Ciudad 2">
-            <h2>Ciudad 2</h2>
-            <p>Disfruta de su increíble cultura y gastronomía.</p>
-            <p>Precio Base: $250</p>
-            <button onclick="seleccionarCiudad('Ciudad 2', 250)">Seleccionar</button>
-        </div>
-        <div class="card">
-            <img src="images/destino-3.jpg" alt="Ciudad 3">
-            <h2>Ciudad 3</h2>
-            <p>Perfecta para unas vacaciones relajantes.</p>
-            <p>Precio Base: $300</p>
-            <button onclick="seleccionarCiudad('Ciudad 3', 300)">Seleccionar</button>
-        </div>
-    </main>
-    <script src="app.js"></script>
+        <h1>Viajes Disponibles</h1>
+        <div id="cards-container" class="cards-container"></div>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

@@ -1,48 +1,468 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    background-color: #007BFF;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-}
-
-main {
-    padding: 1rem;
-}
-
-.ciudades {
+    background-color: #4A6D9B;
     display: flex;
-    gap: 1rem;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.card {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 1rem;
+/* Encabezado */
+header {
+    background: linear-gradient(to right, #FF7F50, #FF6347, #FFD700); /* Degradado de colores cálidos */
+    color: #F5EDED;  /* Color de texto claro */
+    padding: 40px 20px;  /* Espaciado dentro del header */
     text-align: center;
+    font-family: 'Arial', sans-serif; /* Fuente general */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);  /* Sombra para darle profundidad */
+    
+    
+
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+header .title{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+}
+
+header img{
+    width: 5%;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #E1E1E1;
+    margin-top: 10px;
+    animation: fadeIn 2s ease-in-out 0.5s;
+}
+
+/* Títulos de las secciones */
+h1 {
+    font-size: 2.5rem;
+    color: #F9F9F9;
+    margin: 50px 0 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Estilo de las tarjetas de destinos */
+/* Estilo de las tarjetas de destinos */
+.card {
+    background-color: #F9F9F9;
+    border-radius: 12px;
+    border: none;
+    margin: 20px;
+    padding: 20px;
     width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
     width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card img:hover {
+    transform: scale(1.05);
+}
+
+.card h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+    max-height: 60px; /* Ocultamos parte de la descripción */
+    overflow: hidden; /* Esto oculta el texto que excede el límite */
+    text-overflow: ellipsis; /* Muestra "..." si el texto se corta */
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* Descripción expandida */
+.card.expanded p {
+    max-height: 1000px; /* Permite mostrar toda la descripción cuando se expande */
+    text-overflow: unset; /* Elimina el "..." al expandir */
+}
+
+/* Estilo de los botones para expandir/colapsar */
+.toggle-description {
+    background-color: #5A8FBC;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-description:hover {
+    background-color: #48789B;
+}
+
+
+/* Estilo de las opciones de hoteles */
+.hotels {
+    margin-top: 10px;
+}
+
+.hotels ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hotels li {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.hotels li:before {
+    content: "•";
+    color: #5A8FBC;
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Botón de selección */
+.select-city-btn {
+    background-color: #5A8FBC;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.select-city-btn:hover {
+    background-color: #48789B;
+    transform: translateY(-3px);
+}
+
+.select-city-btn:active {
+    transform: translateY(1px);
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .card {
+        width: 250px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+
+/* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #a8e063, #56ab2f);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Contenedor de detalles */
+.detalle-container {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.detalle-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.detalle-container h2 {
+    font-size: 2em;
+    color: #56ab2f;
+    margin-bottom: 15px;
+}
+
+.detalle-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detalle-container p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.detalle-container strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Opciones de hoteles */
+#hotel-options {
+    margin-top: 20px;
+}
+
+#hotel-options div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f4f4f4;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-radio {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: #56ab2f;
+}
+
+#hotel-options label {
+    font-size: 1em;
+    color: #333;
+}
+
+/* Calculadora de costos */
+#calculator {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: auto;
+}
+
+#calculator h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#total-price {
+    font-weight: bold;
+    color: #FF6347;
+}
+
+#btnSaveSelection {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #7FA1C3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btnSaveSelection:hover {
+    background-color: #FF6347;
+}
+
+/* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Estilos del contenedor de resumen */
+#resumen {
+    background-color: #fff;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#summary-details {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#total-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
 }
 
 button {
+    padding: 12px;
+    border: none;
     background-color: #007BFF;
     color: white;
-    border: none;
-    padding: 0.5rem 1rem;
+    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+button[type="button"] {
+    background-color: #dc3545;
+}
+
+button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para imágenes dentro del resumen */
+img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
 }

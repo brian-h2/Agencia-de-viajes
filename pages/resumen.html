@@ -10,27 +10,25 @@
     <header>
         <h1>Resumen de tu Viaje</h1>
     </header>
-    <main>
-        <div id="resumen">
-            <p id="resumen-datos"></p>
-        </div>
-        <form>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" required>
-
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" required>
-
-            <button type="submit">Confirmar</button>
-            <button type="button" id="cancelar">Cancelar Viaje</button>
+    <div id="resumen">
+        <h2>Resumen de tu viaje</h2>
+        
+        <!-- Muestra el destino seleccionado y el precio total -->
+        <p id="summary-details"></p>
+        <p id="total-price"></p>
+        
+        <!-- Formulario de usuario -->
+        <form id="user-form">
+            <input type="text" name="name" placeholder="Nombre completo" required>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="text" name="phone" placeholder="Teléfono" required>
+            <button type="submit">Finalizar</button>
+            <button type="button" onclick="cancelTrip()">Cancelar</button>
         </form>
-    </main>
-    <script src="../app.js"></script>
+    </div>
+    
+
+    
+    <script src="../scripts/resumen.js"></script>
 </body>
 </html>

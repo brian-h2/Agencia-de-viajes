@@ -7,33 +7,32 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <header>
-        <h1 id="destino-titulo">Destino Seleccionado</h1>
-    </header>
-    <main>
-        <div class="hoteles">
-            <h2>Hoteles Disponibles</h2>
-            <label>
-                <input type="radio" name="hotel" value="100" checked> Hotel A ($100 por noche)
-            </label>
-            <label>
-                <input type="radio" name="hotel" value="150"> Hotel B ($150 por noche)
-            </label>
-            <label>
-                <input type="radio" name="hotel" value="200"> Hotel C ($200 por noche)
-            </label>
+    <div id="detalle" class="detalle-container"></div>
+    <div id="calculator">
+        <h3>Calculadora de costos</h3>
+    
+        <!-- Opción de selección de hotel -->
+        <div id="hotel-options"></div>
+    
+        <!-- Selección de número de huespedes -->
+        <div class="input-group">
+            <label for="guests">Número de huespedes:</label>
+            <input type="number" id="guests" value="1" min="1" />
         </div>
-        <div class="calculadora">
-            <label for="personas">Cantidad de Personas:</label>
-            <input type="number" id="personas" value="1" min="1">
-            
-            <label for="noches">Cantidad de Noches:</label>
-            <input type="number" id="noches" value="1" min="1">
-            
-            <p id="total">Total: $0</p>
-            <button onclick="continuar()">Continuar</button>
+    
+        <!-- Selección de número de días -->
+        <div class="input-group">
+            <label for="days">Número de días:</label>
+            <input type="number" id="days" value="1" min="1" />
         </div>
-    </main>
-    <script src="../app.js"></script>
+    
+        <!-- Muestra el costo total -->
+        <p>Total: $<span id="total-price">0</span></p>
+    
+        <!-- Botón de continuar -->
+        <button id="btnSaveSelection">Continuar</button>
+    </div>
+    
+    <script type="module" src="../scripts/calculadora.js"></script>
 </body>
 </html>
