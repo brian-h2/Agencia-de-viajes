@@ -7,22 +7,18 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <header>
-        <h1>Resumen de tu Viaje</h1>
-    </header>
     <div id="resumen">
         <h2>Resumen de tu viaje</h2>
         
-        <!-- Muestra el destino seleccionado y el precio total -->
         <p id="summary-details"></p>
         <p id="total-price"></p>
         
-        <!-- Formulario de usuario -->
         <form id="user-form">
-            <input type="text" name="name" placeholder="Nombre completo" required>
+            <input type="text" name="name" placeholder="Nombre" required>
+            <input type="text" name="surname" placeholder="Apellido" required>
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="text" name="phone" placeholder="Teléfono" required>
-            <button type="submit">Finalizar</button>
+            <button type="submit" onclick="index()">Finalizar</button>
             <button type="button" onclick="cancelTrip()">Cancelar</button>
         </form>
     </div>

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         botonSaveSelection.addEventListener("click", saveSelection);
         renderDetails();
     } else {
-        console.error("El botón 'btn-save-selection' no se encontró.");
+        console.error("El botón 'btnSaveSelection' no se encontró.");
     }
 });
 
@@ -24,7 +24,6 @@ function renderDetails() {
         return;
     }
 
-    // Mostrar detalles de la ciudad
     const detailContainer = document.getElementById("detalle");
     detailContainer.innerHTML = `
         <h2>${city.city}</h2>
@@ -33,7 +32,6 @@ function renderDetails() {
         <p><strong>Precio base:</strong> $${city.price}</p>
     `;
 
-    // Renderizar opciones de hoteles
     const hotelOptions = document.getElementById("hotel-options");
     hotelOptions.innerHTML = city.hotels
         .map(
@@ -46,22 +44,49 @@ function renderDetails() {
         )
         .join("");
 
-    // Añadir listener dinámico a cada opción de hotel
+    // Restaurar selección previa si existe
+    const savedHotelPrice = localStorage.getItem("selectedHotelPrice");
+    if (savedHotelPrice) {
+        const savedHotelInput = Array.from(document.querySelectorAll(".hotel-radio"))
+            .find((input) => input.value === savedHotelPrice);
+        if (savedHotelInput) {
+            savedHotelInput.checked = true;
+        }
+    }
+
     document.querySelectorAll(".hotel-radio").forEach((input) => {
         input.addEventListener("change", () => {
+            localStorage.setItem("selectedHotelPrice", input.value);
             updateTotal(city.price, parseInt(input.value));
         });
     });
+
+    // Restaurar valores previos de huéspedes y días
+    const guestsInput = document.getElementById("guests");
+    const daysInput = document.getElementById("days");
+    guestsInput.value = localStorage.getItem("guests") || 1; // Valor por defecto 1
+    daysInput.value = localStorage.getItem("days") || 1; // Valor por defecto 1
+
+    guestsInput.addEventListener("input", () => {
+        localStorage.setItem("guests", guestsInput.value);
+        updateTotal(city.price, parseInt(document.querySelector('input[name="hotel"]:checked')?.value || 0));
+    });
+
+    daysInput.addEventListener("input", () => {
+        localStorage.setItem("days", daysInput.value);
+        updateTotal(city.price, parseInt(document.querySelector('input[name="hotel"]:checked')?.value || 0));
+    });
+
+    // Calcular el total inicial
+    const selectedHotelPrice = parseInt(savedHotelPrice) || 0;
+    updateTotal(city.price, selectedHotelPrice);
 }
 
 function updateTotal(basePrice, hotelPrice) {
-    const guests = parseInt(document.getElementById("guests").value);
-    const days = parseInt(document.getElementById("days").value);
+    const guests = parseInt(document.getElementById("guests").value) || 1;
+    const days = parseInt(document.getElementById("days").value) || 1;
 
-    // Cálculo total: (precio base + precio del hotel) * número de huespedes * número de días
     const total = (basePrice + hotelPrice) * guests * days;
-
-    // Mostrar el precio total
     document.getElementById("total-price").innerText = total.toFixed(2);
 }
 
@@ -72,13 +97,30 @@ function saveSelection() {
         return;
     }
 
+    const guests = document.getElementById("guests");
+    const days = document.getElementById("days");
+    
+    if (!guests || guests.value.trim() === "" || parseInt(guests.value) <= 0) {
+        alert("Por favor, ingresa un número válido de huéspedes.");
+        guests.focus(); 
+        return;
+    }
+    
+    if (!days || days.value.trim() === "" || parseInt(days.value) <= 0) {
+        alert("Por favor, ingresa un número válido de días.");
+        days.focus(); 
+        return;
+    }
+
     const places = JSON.parse(localStorage.getItem("Places"));
     const cityId = localStorage.getItem("selectedCity");
     const city = places.find((place) => place.id == cityId);
 
-    const total = (parseInt(selectedHotel.value) + city.price) * parseInt(document.getElementById("guests").value) * parseInt(document.getElementById("days").value);
-    localStorage.setItem("city", JSON.stringify(city))
+    const total = (parseInt(selectedHotel.value) + city.price) *
+        parseInt(document.getElementById("guests").value) *
+        parseInt(document.getElementById("days").value);
+
+    localStorage.setItem("city", JSON.stringify(city));
     localStorage.setItem("totalPrice", total);
     window.location.href = "../pages/resumen.html"; // Redirigir a resumen
 }
-
