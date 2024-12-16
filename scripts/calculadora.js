@@ -1,4 +1,4 @@
-export function obtenerValoresCalculadora(cityId) {
+export function obtenerValoresCalculadora() {
     renderDetails();
 }
 
@@ -64,7 +64,7 @@ function renderDetails() {
     // Restaurar valores previos de huéspedes y días
     const guestsInput = document.getElementById("guests");
     const daysInput = document.getElementById("days");
-    guestsInput.value = localStorage.getItem("guests") || 1; // Valor por defecto 1
+    guestsInput.value = localStorage.getItem("guests") || 1; // 
     daysInput.value = localStorage.getItem("days") || 1; // Valor por defecto 1
 
     guestsInput.addEventListener("input", () => {

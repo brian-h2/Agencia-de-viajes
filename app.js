@@ -14,7 +14,6 @@ async function loadPlaces() {
         }
 
         places.forEach((place) => {
-            console.log(place);
             const card = document.createElement('div');
             card.className = 'card';
 
