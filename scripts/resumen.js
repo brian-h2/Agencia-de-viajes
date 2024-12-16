@@ -54,8 +54,8 @@ function index() {
         return;
     }
     
-        localStorage.clear();
-        window.location.href = '../index.html';
+    window.location.href = '../index.html';
+    localStorage.clear();
 }
     
 
