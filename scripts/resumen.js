@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedCity = JSON.parse(localStorage.getItem('city'));
     const cityPrice = localStorage.getItem('totalPrice');
 
-    if (!selectedCity || !cityPrice) {
+    if (selectedCity == '' || cityPrice == '') {
         alert("No se ha seleccionado un destino.");
         window.location.href = '../index.html'; // Redirigir a la página inicial
         return;
